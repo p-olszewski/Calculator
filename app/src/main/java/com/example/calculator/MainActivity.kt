@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         calc_display.text = "0"
         previousValue = calc_display.text.toString()
         setButtonListeners()
+        Log.d(TAG, "First call: ${calc_display.text}")
     }
 
     fun setButtonListeners() {
@@ -40,11 +41,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun buttonEventHandler(it: View?) {
         if (it != null) {
+            Log.d(TAG, "Event handler call: ${calc_display.text}")
             when (it.id) {
                 R.id.button_0 -> {
-                    if (calc_display.text == "0") {
-                        calc_display.text = getString(R.string.button_0)
-                    } else {
+                    if (calc_display.text != "0") {
                         calc_display.append(getString(R.string.button_0))
                     }
                 }
@@ -130,7 +130,6 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         calc_display.text = calc_display.text.substring(0, stringLength - 1)
                     }
-                    Log.d(TAG, calc_display.text.length.toString())
                 }
             }
         }
