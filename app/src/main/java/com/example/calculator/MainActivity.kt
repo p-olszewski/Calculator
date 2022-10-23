@@ -41,20 +41,96 @@ class MainActivity : AppCompatActivity() {
     private fun buttonEventHandler(it: View?) {
         if (it != null) {
             when (it.id) {
-                R.id.button_0 -> calc_display.append(getString(R.string.button_0))
-                R.id.button_1 -> calc_display.append(getString(R.string.button_1))
-                R.id.button_2 -> calc_display.append(getString(R.string.button_2))
-                R.id.button_3 -> calc_display.append(getString(R.string.button_3))
-                R.id.button_4 -> calc_display.append(getString(R.string.button_4))
-                R.id.button_5 -> calc_display.append(getString(R.string.button_5))
-                R.id.button_6 -> calc_display.append(getString(R.string.button_6))
-                R.id.button_7 -> calc_display.append(getString(R.string.button_7))
-                R.id.button_8 -> calc_display.append(getString(R.string.button_8))
-                R.id.button_9 -> calc_display.append(getString(R.string.button_9))
+                R.id.button_0 -> {
+                    if (calc_display.text == "0") {
+                        calc_display.text = getString(R.string.button_0)
+                    } else {
+                        calc_display.append(getString(R.string.button_0))
+                    }
+                }
+
+                R.id.button_1 -> {
+                    if (calc_display.text == "0") {
+                        calc_display.text = getString(R.string.button_1)
+                    } else {
+                        calc_display.append(getString(R.string.button_1))
+                    }
+                }
+
+                R.id.button_2 -> {
+                    if (calc_display.text == "0") {
+                        calc_display.text = getString(R.string.button_2)
+                    } else {
+                        calc_display.append(getString(R.string.button_2))
+                    }
+                }
+
+                R.id.button_3 -> {
+                    if (calc_display.text == "0") {
+                        calc_display.text = getString(R.string.button_3)
+                    } else {
+                        calc_display.append(getString(R.string.button_3))
+                    }
+                }
+
+                R.id.button_4 -> {
+                    if (calc_display.text == "0") {
+                        calc_display.text = getString(R.string.button_4)
+                    } else {
+                        calc_display.append(getString(R.string.button_4))
+                    }
+                }
+
+                R.id.button_5 -> {
+                    if (calc_display.text == "0") {
+                        calc_display.text = getString(R.string.button_5)
+                    } else {
+                        calc_display.append(getString(R.string.button_5))
+                    }
+                }
+
+                R.id.button_6 -> {
+                    if (calc_display.text == "0") {
+                        calc_display.text = getString(R.string.button_6)
+                    } else {
+                        calc_display.append(getString(R.string.button_6))
+                    }
+                }
+
+                R.id.button_7 -> {
+                    if (calc_display.text == "0") {
+                        calc_display.text = getString(R.string.button_7)
+                    } else {
+                        calc_display.append(getString(R.string.button_7))
+                    }
+                }
+
+                R.id.button_8 -> {
+                    if (calc_display.text == "0") {
+                        calc_display.text = getString(R.string.button_8)
+                    } else {
+                        calc_display.append(getString(R.string.button_8))
+                    }
+                }
+
+                R.id.button_9 -> {
+                    if (calc_display.text == "0") {
+                        calc_display.text = getString(R.string.button_9)
+                    } else {
+                        calc_display.append(getString(R.string.button_9))
+                    }
+                }
+
                 R.id.button_ac -> calc_display.text = "0"
+
                 R.id.button_bksp -> {
-                    calc_display.text.substring(0, calc_display.length().toString().toInt() - 2)
-                    Log.d(TAG, calc_display.length().toString())
+                    val stringLength = calc_display.text.length
+                    if (stringLength == 1) {
+                        calc_display.text = "0"
+                    } else {
+                        calc_display.text = calc_display.text.substring(0, stringLength - 1)
+                    }
+                    Log.d(TAG, calc_display.text.length.toString())
                 }
             }
         }
