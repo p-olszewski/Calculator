@@ -1,6 +1,7 @@
 package com.example.calculator
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -51,7 +52,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.button_8 -> calc_display.append(getString(R.string.button_8))
                 R.id.button_9 -> calc_display.append(getString(R.string.button_9))
                 R.id.button_ac -> calc_display.text = "0"
-                R.id.button_bksp -> calc_display.text.substring(0, calc_display.length() - 1)
+                R.id.button_bksp -> {
+                    calc_display.text.substring(0, calc_display.length().toString().toInt() - 2)
+                    Log.d(TAG, calc_display.length().toString())
+                }
             }
         }
 }
