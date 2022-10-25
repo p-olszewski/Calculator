@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         calc_display = findViewById<TextView>(R.id.tvResult)
-        calc_display.text = "0"
+        calc_display.text = ""
         previousValue = calc_display.text.toString()
         setButtonListeners()
         Log.d(TAG, "First call: ${calc_display.text}")
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.button_1 -> {
-                    if (calc_display.text == "0") {
+                    if (calc_display.text == "") {
                         calc_display.text = getString(R.string.button_1)
                     } else {
                         calc_display.append(getString(R.string.button_1))
@@ -121,12 +121,12 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                R.id.button_ac -> calc_display.text = "0"
+                R.id.button_ac -> calc_display.text = ""
 
                 R.id.button_bksp -> {
                     val stringLength = calc_display.text.length
-                    if (stringLength == 1) {
-                        calc_display.text = "0"
+                    if (stringLength <= 1) {
+                        calc_display.text = ""
                     } else {
                         calc_display.text = calc_display.text.substring(0, stringLength - 1)
                     }
