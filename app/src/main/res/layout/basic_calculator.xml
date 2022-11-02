@@ -50,7 +50,9 @@
             android:text="@string/button_ac"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:onClick="allClearBtn"
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
         <Button
             android:id="@+id/button_bksp"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -60,7 +62,9 @@
             android:text="@string/button_bksp"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:onClick="bkspBtn"
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
         <Button
             android:id="@+id/button_change_sign"
             style="@style/Widget.AppCompat.Button.Borderless"
