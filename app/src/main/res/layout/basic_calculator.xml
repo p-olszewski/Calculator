@@ -188,6 +188,7 @@
             android:text="@string/button_multiply"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
+            android:onClick="multiplyBtn"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -240,6 +241,7 @@
             android:text="@string/button_add"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
+            android:onClick="addBtn"
             android:textStyle="bold" />
 
     </LinearLayout>

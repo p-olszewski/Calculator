@@ -12,6 +12,7 @@ private const val TAG = "BasicCalculator"
 class BasicCalculator : AppCompatActivity() {
     lateinit var calc_display: TextView
     var previousValue: String = "0"
+    lateinit var operation : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,7 +137,10 @@ class BasicCalculator : AppCompatActivity() {
 
     fun resultBtn(view: View) { }
 
-    fun addBtn(view: View) {}
+    fun addBtn(view: View) {
+        previousValue = calc_display.text.toString()
+        operation = "+"
+    }
 
     fun dotBtn(view: View) {}
 
