@@ -7,18 +7,18 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-private const val TAG = "MainActivity"
+private const val TAG = "BasicCalculator"
 
-class MainActivity : AppCompatActivity() {
+class BasicCalculator : AppCompatActivity() {
     lateinit var calc_display: TextView
     var previousValue: String = "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.basic_calculator)
 
         calc_display = findViewById<TextView>(R.id.tvResult)
-        calc_display.text = ""
+        calc_display.text = "0"
         previousValue = calc_display.text.toString()
         setButtonListeners()
         Log.d(TAG, "First call: ${calc_display.text}")
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.button_1 -> {
-                    if (calc_display.text == "") {
+                    if (calc_display.text.toString() == "0") {
                         calc_display.text = getString(R.string.button_1)
                     } else {
                         calc_display.append(getString(R.string.button_1))
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.button_2 -> {
-                    if (calc_display.text == "0") {
+                    if (calc_display.text.toString() == "0") {
                         calc_display.text = getString(R.string.button_2)
                     } else {
                         calc_display.append(getString(R.string.button_2))
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.button_3 -> {
-                    if (calc_display.text == "0") {
+                    if (calc_display.text.toString() == "0") {
                         calc_display.text = getString(R.string.button_3)
                     } else {
                         calc_display.append(getString(R.string.button_3))
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.button_4 -> {
-                    if (calc_display.text == "0") {
+                    if (calc_display.text.toString() == "0") {
                         calc_display.text = getString(R.string.button_4)
                     } else {
                         calc_display.append(getString(R.string.button_4))
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.button_5 -> {
-                    if (calc_display.text == "0") {
+                    if (calc_display.text.toString() == "0") {
                         calc_display.text = getString(R.string.button_5)
                     } else {
                         calc_display.append(getString(R.string.button_5))
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.button_6 -> {
-                    if (calc_display.text == "0") {
+                    if (calc_display.text.toString() == "0") {
                         calc_display.text = getString(R.string.button_6)
                     } else {
                         calc_display.append(getString(R.string.button_6))
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.button_7 -> {
-                    if (calc_display.text == "0") {
+                    if (calc_display.text.toString() == "0") {
                         calc_display.text = getString(R.string.button_7)
                     } else {
                         calc_display.append(getString(R.string.button_7))
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.button_8 -> {
-                    if (calc_display.text == "0") {
+                    if (calc_display.text.toString() == "0") {
                         calc_display.text = getString(R.string.button_8)
                     } else {
                         calc_display.append(getString(R.string.button_8))
@@ -114,19 +114,19 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.button_9 -> {
-                    if (calc_display.text == "0") {
+                    if (calc_display.text.toString() == "0") {
                         calc_display.text = getString(R.string.button_9)
                     } else {
                         calc_display.append(getString(R.string.button_9))
                     }
                 }
 
-                R.id.button_ac -> calc_display.text = ""
+                R.id.button_ac -> calc_display.text = "0"
 
                 R.id.button_bksp -> {
                     val stringLength = calc_display.text.length
                     if (stringLength <= 1) {
-                        calc_display.text = ""
+                        calc_display.text = "0"
                     } else {
                         calc_display.text = calc_display.text.substring(0, stringLength - 1)
                     }
