@@ -10,78 +10,120 @@ import androidx.appcompat.app.AppCompatActivity
 private const val TAG = "BasicCalculator"
 
 class BasicCalculator : AppCompatActivity() {
-    lateinit var calc_display: TextView
-    var previousValue: String = "0"
+    private lateinit var calcDisplay: TextView
+    var firstValue: Double = 0.0
     lateinit var operation: String
     var lastNumeric: Boolean = false
+    var lastOperationPressed: Boolean = false
     var lastDot: Boolean = false
+    var resultValue: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.basic_calculator)
 
-        calc_display = findViewById<TextView>(R.id.tvResult)
-        calc_display.text = "0"
-        previousValue = calc_display.text.toString()
-        setButtonListeners()
-        Log.d(TAG, "First call: ${calc_display.text}")
+        calcDisplay = findViewById<TextView>(R.id.tvResult)
+        calcDisplay.text = resultValue.toString()
+        firstValue = calcDisplay.text.toString().toDouble()
+        Log.d(TAG, "First call: ${calcDisplay.text}")
     }
 
-    fun setButtonListeners() {
-        findViewById<Button>(R.id.button_0).setOnClickListener { numericButtonHandler(it) }
-        findViewById<Button>(R.id.button_1).setOnClickListener { numericButtonHandler(it) }
-        findViewById<Button>(R.id.button_2).setOnClickListener { numericButtonHandler(it) }
-        findViewById<Button>(R.id.button_3).setOnClickListener { numericButtonHandler(it) }
-        findViewById<Button>(R.id.button_4).setOnClickListener { numericButtonHandler(it) }
-        findViewById<Button>(R.id.button_5).setOnClickListener { numericButtonHandler(it) }
-        findViewById<Button>(R.id.button_6).setOnClickListener { numericButtonHandler(it) }
-        findViewById<Button>(R.id.button_7).setOnClickListener { numericButtonHandler(it) }
-        findViewById<Button>(R.id.button_8).setOnClickListener { numericButtonHandler(it) }
-        findViewById<Button>(R.id.button_9).setOnClickListener { numericButtonHandler(it) }
-    }
-
-    private fun numericButtonHandler(view: View?) {
-        if (view != null) {
-            Log.d(TAG, "Event handler call: ${calc_display.text}")
-            if (calc_display.text.toString() == "0") {
-                calc_display.text = (view as Button).text
-            } else {
-                calc_display.append((view as Button).text)
-            }
-            lastNumeric = true;
+    fun numericButtonHandler(view: View?) {
+        if (lastOperationPressed or (calcDisplay.text.toString() == "0")) {
+            calcDisplay.text = (view as Button).text
+        } else {
+            calcDisplay.append((view as Button).text)
         }
+        lastOperationPressed = false
+        Log.d(
+            TAG,
+            "Digit: ${(view as Button).text}, String: ${calcDisplay.text}, lastOperationPressed: ${lastOperationPressed}"
+        )
     }
 
     fun changeSignBtn(view: View?) {}
 
-    fun divideBtn(view: View?) {}
-
-    fun subtractBtn(view: View?) {}
-
-    fun multiplyBtn(view: View?) {}
-
-    fun resultBtn(view: View?) {}
-
     fun addBtn(view: View?) {
-        previousValue = calc_display.text.toString()
+        lastOperationPressed = true;
         operation = "+"
+        firstValue = calcDisplay.text.toString().toDouble()
+        Log.d(
+            TAG,
+            "Operation: ${operation}, lastOperationPressed: ${lastOperationPressed}, firstValue: ${firstValue}"
+        )
+    }
+
+    fun subtractBtn(view: View?) {
+        lastOperationPressed = true;
+        operation = "-"
+        firstValue = calcDisplay.text.toString().toDouble()
+        Log.d(
+            TAG,
+            "Operation: ${operation}, lastOperationPressed: ${lastOperationPressed}, firstValue: ${firstValue}"
+        )
+    }
+
+    fun multiplyBtn(view: View?) {
+        lastOperationPressed = true;
+        operation = "*"
+        firstValue = calcDisplay.text.toString().toDouble()
+        Log.d(
+            TAG,
+            "Operation: ${operation}, lastOperationPressed: ${lastOperationPressed}, firstValue: ${firstValue}"
+        )
+    }
+
+    fun divideBtn(view: View?) {
+        lastOperationPressed = true;
+        operation = "/"
+        firstValue = calcDisplay.text.toString().toDouble()
+        Log.d(
+            TAG,
+            "Operation: ${operation}, lastOperationPressed: ${lastOperationPressed}, firstValue: ${firstValue}"
+        )
     }
 
     fun dotBtn(view: View) {}
 
     fun allClearBtn(view: View?) {
-        Log.d(TAG, "Event handler call: ${calc_display.text}")
-        calc_display.text = "0"
+        Log.d(TAG, "Event handler call: ${calcDisplay.text}")
+        calcDisplay.text = "0"
         lastNumeric = false
         lastDot = false
     }
+
     fun bkspBtn(view: View?) {
-        Log.d(TAG, "Event handler call: ${calc_display.text}")
-        val stringLength = calc_display.text.length
+        Log.d(TAG, "Event handler call: ${calcDisplay.text}")
+        val stringLength = calcDisplay.text.length
         if (stringLength <= 1) {
-            calc_display.text = "0"
+            calcDisplay.text = "0"
         } else {
-            calc_display.text = calc_display.text.substring(0, stringLength - 1)
+            calcDisplay.text = calcDisplay.text.substring(0, stringLength - 1)
+        }
+    }
+
+    fun resultBtn(view: View?) {
+        val secondValue: Double = calcDisplay.text.toString().toDouble()
+
+        when (operation) {
+            "+" -> {
+                resultValue = firstValue + secondValue
+                calcDisplay.text = resultValue.toString()
+            }
+            "-" -> {
+                resultValue = firstValue - secondValue
+                calcDisplay.text = resultValue.toString()
+            }
+            "*" -> {
+                resultValue = firstValue * secondValue
+                calcDisplay.text = resultValue.toString()
+            }
+//            "/" -> {
+//                if (secondValue != 0) {
+//                    resultValue = firstValue / secondValue
+//                    calcDisplay.text = resultValue.toString()
+//                }
         }
     }
 }
+

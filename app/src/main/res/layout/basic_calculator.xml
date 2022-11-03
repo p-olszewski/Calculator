@@ -47,12 +47,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="allClearBtn"
             android:text="@string/button_ac"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="22sp"
-            android:onClick="allClearBtn"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
+
         <Button
             android:id="@+id/button_bksp"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -84,7 +85,9 @@
             android:text="@string/button_divide"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:onClick="divideBtn"
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
 
     <LinearLayout
@@ -106,7 +109,9 @@
             android:text="@string/button_7"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:textStyle="bold" />
+            android:onClick="numericButtonHandler"
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
         <Button
             android:id="@+id/button_8"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -116,7 +121,9 @@
             android:text="@string/button_8"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:textStyle="bold" />
+            android:onClick="numericButtonHandler"
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
         <Button
             android:id="@+id/button_9"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -126,7 +133,9 @@
             android:text="@string/button_9"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:textStyle="bold" />
+            android:onClick="numericButtonHandler"
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
         <Button
             android:id="@+id/button_subtract"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -137,7 +146,9 @@
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:cornerRadius="10dp" />
+            android:onClick="subtractBtn"
+            app:cornerRadius="10dp"
+            tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
 
     <LinearLayout
@@ -160,7 +171,9 @@
             android:textColor="@color/white"
             android:textSize="26sp"
             android:textStyle="bold"
-            app:cornerRadius="10dp" />
+            android:onClick="numericButtonHandler"
+            app:cornerRadius="10dp"
+            tools:ignore="UsingOnClickInXml" />
         <Button
             android:id="@+id/button_2"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -171,7 +184,9 @@
             android:textColor="@color/white"
             android:textSize="26sp"
             android:textStyle="bold"
-            app:cornerRadius="10dp" />
+            android:onClick="numericButtonHandler"
+            app:cornerRadius="10dp"
+            tools:ignore="UsingOnClickInXml" />
         <Button
             android:id="@+id/button_3"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -182,7 +197,9 @@
             android:textColor="@color/white"
             android:textSize="26sp"
             android:textStyle="bold"
-            app:cornerRadius="10dp" />
+            android:onClick="numericButtonHandler"
+            app:cornerRadius="10dp"
+            tools:ignore="UsingOnClickInXml" />
         <Button
             android:id="@+id/button_multiply"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -193,7 +210,8 @@
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
             android:onClick="multiplyBtn"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
 
     <LinearLayout
@@ -215,7 +233,9 @@
             android:text="@string/button_4"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:textStyle="bold" />
+            android:onClick="numericButtonHandler"
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
         <Button
             android:id="@+id/button_5"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -225,7 +245,9 @@
             android:text="@string/button_5"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:textStyle="bold" />
+            android:onClick="numericButtonHandler"
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
         <Button
             android:id="@+id/button_6"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -235,7 +257,9 @@
             android:text="@string/button_6"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:textStyle="bold" />
+            android:onClick="numericButtonHandler"
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
         <Button
             android:id="@+id/button_add"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -246,7 +270,8 @@
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
             android:onClick="addBtn"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
 
     </LinearLayout>
 
@@ -270,7 +295,8 @@
             android:textColor="@color/white"
             android:textSize="26sp"
             android:textStyle="bold"
-            tools:ignore="DuplicateSpeakableTextCheck" />
+            android:onClick="numericButtonHandler"
+            tools:ignore="DuplicateSpeakableTextCheck,UsingOnClickInXml" />
         <Button
             android:id="@+id/button_dot"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -294,7 +320,8 @@
             android:text="@string/button_result"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
 
     <View
