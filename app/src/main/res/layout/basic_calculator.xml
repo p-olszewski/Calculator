@@ -66,6 +66,7 @@
             android:onClick="bkspBtn"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
+
         <Button
             android:id="@+id/button_change_sign"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -75,7 +76,9 @@
             android:text="@string/button_change_sign"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
+            android:onClick="changeSignBtn"
             android:textStyle="bold" />
+
         <Button
             android:id="@+id/button_divide"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -85,8 +88,8 @@
             android:text="@string/button_divide"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
-            android:onClick="divideBtn"
             android:textStyle="bold"
+            android:onClick="operationButtonHandler"
             tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
 
@@ -146,7 +149,7 @@
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:onClick="subtractBtn"
+            android:onClick="operationButtonHandler"
             app:cornerRadius="10dp"
             tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
@@ -209,7 +212,7 @@
             android:text="@string/button_multiply"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
-            android:onClick="multiplyBtn"
+            android:onClick="operationButtonHandler"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
@@ -269,7 +272,7 @@
             android:text="@string/button_add"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
-            android:onClick="addBtn"
+            android:onClick="operationButtonHandler"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 

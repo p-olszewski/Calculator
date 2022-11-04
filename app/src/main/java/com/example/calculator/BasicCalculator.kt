@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlin.math.abs
 
 private const val TAG = "BasicCalculator"
 
@@ -23,7 +25,7 @@ class BasicCalculator : AppCompatActivity() {
         setContentView(R.layout.basic_calculator)
 
         calcDisplay = findViewById<TextView>(R.id.tvResult)
-        calcDisplay.text = resultValue.toString()
+        calcDisplay.text = "0"
         firstValue = calcDisplay.text.toString().toDouble()
         Log.d(TAG, "First call: ${calcDisplay.text}")
     }
@@ -41,41 +43,28 @@ class BasicCalculator : AppCompatActivity() {
         )
     }
 
-    fun changeSignBtn(view: View?) {}
+    fun changeSignBtn(view: View?) {
+        var displayedValue = calcDisplay.text.toString().toDouble()
+        displayedValue = if (displayedValue > 0) -displayedValue else abs(displayedValue)
 
-    fun addBtn(view: View?) {
-        lastOperationPressed = true;
-        operation = "+"
-        firstValue = calcDisplay.text.toString().toDouble()
-        Log.d(
-            TAG,
-            "Operation: ${operation}, lastOperationPressed: ${lastOperationPressed}, firstValue: ${firstValue}"
-        )
+        //jeśli reszta dzielenia wartości przez 1 wynosi 0.0 lub -0.0
+        if (displayedValue.rem(1).equals(0.0) or displayedValue.rem(1).equals(-0.0)) {
+            calcDisplay.text = displayedValue.toInt().toString()
+        } else {
+            calcDisplay.text = displayedValue.toString()
+        }
     }
 
-    fun subtractBtn(view: View?) {
+    fun operationButtonHandler(view: View?) {
+        if (view != null) {
+            when (view.id) {
+                R.id.button_add -> operation = "+"
+                R.id.button_subtract -> operation = "-"
+                R.id.button_multiply -> operation = "*"
+                R.id.button_divide -> operation = "/"
+            }
+        }
         lastOperationPressed = true;
-        operation = "-"
-        firstValue = calcDisplay.text.toString().toDouble()
-        Log.d(
-            TAG,
-            "Operation: ${operation}, lastOperationPressed: ${lastOperationPressed}, firstValue: ${firstValue}"
-        )
-    }
-
-    fun multiplyBtn(view: View?) {
-        lastOperationPressed = true;
-        operation = "*"
-        firstValue = calcDisplay.text.toString().toDouble()
-        Log.d(
-            TAG,
-            "Operation: ${operation}, lastOperationPressed: ${lastOperationPressed}, firstValue: ${firstValue}"
-        )
-    }
-
-    fun divideBtn(view: View?) {
-        lastOperationPressed = true;
-        operation = "/"
         firstValue = calcDisplay.text.toString().toDouble()
         Log.d(
             TAG,
@@ -108,21 +97,29 @@ class BasicCalculator : AppCompatActivity() {
         when (operation) {
             "+" -> {
                 resultValue = firstValue + secondValue
-                calcDisplay.text = resultValue.toString()
             }
             "-" -> {
                 resultValue = firstValue - secondValue
-                calcDisplay.text = resultValue.toString()
             }
             "*" -> {
                 resultValue = firstValue * secondValue
-                calcDisplay.text = resultValue.toString()
             }
-//            "/" -> {
-//                if (secondValue != 0) {
-//                    resultValue = firstValue / secondValue
-//                    calcDisplay.text = resultValue.toString()
-//                }
+            "/" -> {
+                if (secondValue != 0.0) {
+                    resultValue = firstValue / secondValue
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Oops! You better do not divide by 0!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+        if (resultValue.rem(1).equals(0.0) or resultValue.rem(1).equals(-0.0)) {
+            calcDisplay.text = resultValue.toInt().toString()
+        } else {
+            calcDisplay.text = resultValue.toString()
         }
     }
 }
