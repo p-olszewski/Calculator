@@ -15,9 +15,8 @@ class BasicCalculator : AppCompatActivity() {
     private lateinit var calcDisplay: TextView
     var firstValue: Double = 0.0
     lateinit var operation: String
-    var lastNumeric: Boolean = false
     var lastOperationPressed: Boolean = false
-    var lastDot: Boolean = false
+    var dotInValue: Boolean = false
     var resultValue: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +38,7 @@ class BasicCalculator : AppCompatActivity() {
         lastOperationPressed = false
         Log.d(
             TAG,
-            "Digit: ${(view as Button).text}, String: ${calcDisplay.text}, lastOperationPressed: ${lastOperationPressed}"
+            "Digit: ${(view as Button).text}, String: ${calcDisplay.text}, lastOperationPressed: ${lastOperationPressed}, dotInValue: $dotInValue"
         )
     }
 
@@ -68,17 +67,22 @@ class BasicCalculator : AppCompatActivity() {
         firstValue = calcDisplay.text.toString().toDouble()
         Log.d(
             TAG,
-            "Operation: ${operation}, lastOperationPressed: ${lastOperationPressed}, firstValue: ${firstValue}"
+            "Operation: ${operation}, lastOperationPressed: ${lastOperationPressed}, firstValue: ${firstValue}, dotInValue: $dotInValue"
         )
     }
 
-    fun dotBtn(view: View) {}
+    //TODO add functionality to another number!
+    fun dotBtn(view: View) {
+        if (!dotInValue) {
+            calcDisplay.append((view as Button).text)
+            dotInValue = true
+        }
+    }
 
     fun allClearBtn(view: View?) {
         Log.d(TAG, "Event handler call: ${calcDisplay.text}")
         calcDisplay.text = "0"
-        lastNumeric = false
-        lastDot = false
+        dotInValue = false
     }
 
     fun bkspBtn(view: View?) {
@@ -87,6 +91,9 @@ class BasicCalculator : AppCompatActivity() {
         if (stringLength <= 1) {
             calcDisplay.text = "0"
         } else {
+            if (calcDisplay.text.toString().last() == '.') {
+                dotInValue = false
+            }
             calcDisplay.text = calcDisplay.text.substring(0, stringLength - 1)
         }
     }
@@ -95,15 +102,9 @@ class BasicCalculator : AppCompatActivity() {
         val secondValue: Double = calcDisplay.text.toString().toDouble()
 
         when (operation) {
-            "+" -> {
-                resultValue = firstValue + secondValue
-            }
-            "-" -> {
-                resultValue = firstValue - secondValue
-            }
-            "*" -> {
-                resultValue = firstValue * secondValue
-            }
+            "+" -> resultValue = firstValue + secondValue
+            "-" -> resultValue = firstValue - secondValue
+            "*" -> resultValue = firstValue * secondValue
             "/" -> {
                 if (secondValue != 0.0) {
                     resultValue = firstValue / secondValue
@@ -121,6 +122,11 @@ class BasicCalculator : AppCompatActivity() {
         } else {
             calcDisplay.text = resultValue.toString()
         }
+        dotInValue = resultValue.toString().contains('.')
+        Log.d(
+            TAG,
+            "Result: ${resultValue}, dotInValue: ${dotInValue}"
+        )
     }
 }
 

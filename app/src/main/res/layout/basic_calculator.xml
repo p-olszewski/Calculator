@@ -310,7 +310,8 @@
             android:text="@string/button_dot"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
 
         <Button
             android:id="@+id/button_result"
