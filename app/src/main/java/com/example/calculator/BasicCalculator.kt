@@ -14,7 +14,7 @@ private const val TAG = "BasicCalculator"
 class BasicCalculator : AppCompatActivity() {
     private lateinit var calcDisplay: TextView
     var firstValue: Double = 0.0
-    lateinit var operation: String
+    private var operation: String = ""
     var lastOperationPressed: Boolean = false
     var dotInValue: Boolean = false
     var resultValue: Double = 0.0
@@ -27,6 +27,35 @@ class BasicCalculator : AppCompatActivity() {
         calcDisplay.text = "0"
         firstValue = calcDisplay.text.toString().toDouble()
         Log.d(TAG, "First call: ${calcDisplay.text}")
+    }
+
+    private fun calculateResult(value1: Double, operator: String, value2: Double) {
+        when (operator) {
+            "+" -> resultValue = value1 + value2
+            "-" -> resultValue = value1 - value2
+            "*" -> resultValue = value1 * value2
+            "/" -> {
+                if (value2 != 0.0) {
+                    resultValue = value1 / value2
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Oops! You better do not divide by 0!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+        if (resultValue.rem(1).equals(0.0) or resultValue.rem(1).equals(-0.0)) {
+            calcDisplay.text = resultValue.toInt().toString()
+        } else {
+            calcDisplay.text = resultValue.toString()
+        }
+        dotInValue = calcDisplay.text.toString().contains('.') // true or false
+        Log.d(
+            TAG,
+            "Result: ${resultValue}, $value1 $operator $value2, dotInValue: $dotInValue"
+        )
     }
 
     fun numericButtonHandler(view: View?) {
@@ -42,19 +71,10 @@ class BasicCalculator : AppCompatActivity() {
         )
     }
 
-    fun changeSignBtn(view: View?) {
-        var displayedValue = calcDisplay.text.toString().toDouble()
-        displayedValue = if (displayedValue > 0) -displayedValue else abs(displayedValue)
-
-        //jeśli reszta dzielenia wartości przez 1 wynosi 0.0 lub -0.0
-        if (displayedValue.rem(1).equals(0.0) or displayedValue.rem(1).equals(-0.0)) {
-            calcDisplay.text = displayedValue.toInt().toString()
-        } else {
-            calcDisplay.text = displayedValue.toString()
-        }
-    }
-
     fun operationButtonHandler(view: View?) {
+        if (!lastOperationPressed and operation.isNotEmpty()) {
+            calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
+        }
         if (view != null) {
             when (view.id) {
                 R.id.button_add -> operation = "+"
@@ -81,15 +101,14 @@ class BasicCalculator : AppCompatActivity() {
 
     fun allClearBtn(view: View?) {
         Log.d(TAG, "Event handler call: ${calcDisplay.text}")
-        calcDisplay.text = "0"
-        dotInValue = false
+        restoreDefaults()
     }
 
     fun bkspBtn(view: View?) {
         Log.d(TAG, "Event handler call: ${calcDisplay.text}")
         val stringLength = calcDisplay.text.length
         if (stringLength <= 1) {
-            calcDisplay.text = "0"
+            restoreDefaults()
         } else {
             if (calcDisplay.text.toString().last() == '.') {
                 dotInValue = false
@@ -98,35 +117,31 @@ class BasicCalculator : AppCompatActivity() {
         }
     }
 
-    fun resultBtn(view: View?) {
-        val secondValue: Double = calcDisplay.text.toString().toDouble()
+    private fun restoreDefaults() {
+        calcDisplay.text = "0"
+        firstValue = 0.0
+        resultValue = 0.0
+        operation = ""
+        dotInValue = false
+    }
 
-        when (operation) {
-            "+" -> resultValue = firstValue + secondValue
-            "-" -> resultValue = firstValue - secondValue
-            "*" -> resultValue = firstValue * secondValue
-            "/" -> {
-                if (secondValue != 0.0) {
-                    resultValue = firstValue / secondValue
-                } else {
-                    Toast.makeText(
-                        applicationContext,
-                        "Oops! You better do not divide by 0!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
-        if (resultValue.rem(1).equals(0.0) or resultValue.rem(1).equals(-0.0)) {
-            calcDisplay.text = resultValue.toInt().toString()
+    fun changeSignBtn(view: View?) {
+        var displayedValue = calcDisplay.text.toString().toDouble()
+        displayedValue = if (displayedValue > 0) -displayedValue else abs(displayedValue)
+
+        //jeśli reszta dzielenia wartości przez 1 wynosi 0.0 lub -0.0
+        if (displayedValue.rem(1).equals(0.0) or displayedValue.rem(1).equals(-0.0)) {
+            calcDisplay.text = displayedValue.toInt().toString()
         } else {
-            calcDisplay.text = resultValue.toString()
+            calcDisplay.text = displayedValue.toString()
         }
-        dotInValue = resultValue.toString().contains('.')
-        Log.d(
-            TAG,
-            "Result: ${resultValue}, dotInValue: ${dotInValue}"
-        )
+    }
+
+    fun resultBtn(view: View) {
+        if (!lastOperationPressed) {
+            calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
+            lastOperationPressed = true
+        }
     }
 }
 
