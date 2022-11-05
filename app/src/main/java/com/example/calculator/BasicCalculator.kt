@@ -39,32 +39,35 @@ class BasicCalculator : AppCompatActivity() {
                     resultValue = value1 / value2
                 } else {
                     Toast.makeText(
-                        applicationContext,
-                        "Oops! You better do not divide by 0!",
-                        Toast.LENGTH_SHORT
+                        applicationContext, "Oops! You better do not divide by 0!", Toast.LENGTH_SHORT
                     ).show()
                 }
             }
         }
+        //TODO fix wrong answer displayed on display with long numbers
+//        resultValue = String.format("%.3f", resultValue).toDouble()
         if (resultValue.rem(1).equals(0.0) or resultValue.rem(1).equals(-0.0)) {
             calcDisplay.text = resultValue.toInt().toString()
         } else {
             calcDisplay.text = resultValue.toString()
         }
+//        calcDisplay.text = calcDisplay.text.toString().take(10)
         dotInValue = calcDisplay.text.toString().contains('.') // true or false
-        Log.d(
-            TAG,
-            "Result: ${resultValue}, $value1 $operator $value2, dotInValue: $dotInValue"
-        )
+        Log.d(TAG, "Result: ${resultValue}, $value1 $operator $value2, dotInValue: $dotInValue")
     }
 
     fun numericButtonHandler(view: View?) {
         if (lastOperationPressed or (calcDisplay.text.toString() == "0")) {
             calcDisplay.text = (view as Button).text
         } else {
-            calcDisplay.append((view as Button).text)
+            if (calcDisplay.text.length >= 10) {
+                Toast.makeText(applicationContext, "Max number length is 10!", Toast.LENGTH_SHORT).show()
+            } else {
+                calcDisplay.append((view as Button).text)
+            }
         }
         lastOperationPressed = false
+        dotInValue = calcDisplay.text.toString().contains('.') // true or false
         Log.d(
             TAG,
             "Digit: ${(view as Button).text}, String: ${calcDisplay.text}, lastOperationPressed: ${lastOperationPressed}, dotInValue: $dotInValue"
@@ -91,7 +94,6 @@ class BasicCalculator : AppCompatActivity() {
         )
     }
 
-    //TODO add functionality to another number!
     fun dotBtn(view: View) {
         if (!dotInValue) {
             calcDisplay.append((view as Button).text)
