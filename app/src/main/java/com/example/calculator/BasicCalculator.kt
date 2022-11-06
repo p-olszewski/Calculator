@@ -29,7 +29,11 @@ class BasicCalculator : AppCompatActivity() {
         Log.d(TAG, "First call: ${calcDisplay.text}")
     }
 
+    //TODO add validation to adding to numbers with e notation
+    // f.e. 1.23E13+0,5 = 1.23E13, but result is calculated properly
+    // reading from screen is a problem, should be read from variable
     private fun calculateResult(value1: Double, operator: String, value2: Double) {
+        Log.d(TAG, "Result value before: ${resultValue}")
         when (operator) {
             "+" -> resultValue = value1 + value2
             "-" -> resultValue = value1 - value2
@@ -44,14 +48,16 @@ class BasicCalculator : AppCompatActivity() {
                 }
             }
         }
-        //TODO fix wrong answer displayed on display with long numbers
-//        resultValue = String.format("%.3f", resultValue).toDouble()
+
         if (resultValue.rem(1).equals(0.0) or resultValue.rem(1).equals(-0.0)) {
-            calcDisplay.text = resultValue.toInt().toString()
+            calcDisplay.text = resultValue.toLong().toString()
         } else {
             calcDisplay.text = resultValue.toString()
         }
-//        calcDisplay.text = calcDisplay.text.toString().take(10)
+        if (calcDisplay.text.length > 10) {
+            calcDisplay.text = String.format("%e", resultValue).toDouble().toString()
+        }
+
         dotInValue = calcDisplay.text.toString().contains('.') // true or false
         Log.d(TAG, "Result: ${resultValue}, $value1 $operator $value2, dotInValue: $dotInValue")
     }
@@ -61,7 +67,7 @@ class BasicCalculator : AppCompatActivity() {
             calcDisplay.text = (view as Button).text
         } else {
             if (calcDisplay.text.length >= 10) {
-                Toast.makeText(applicationContext, "Max number length is 10!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Max length is 10 characters!", Toast.LENGTH_SHORT).show()
             } else {
                 calcDisplay.append((view as Button).text)
             }
@@ -76,7 +82,11 @@ class BasicCalculator : AppCompatActivity() {
 
     fun operationButtonHandler(view: View?) {
         if (!lastOperationPressed and operation.isNotEmpty()) {
-            calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
+            if (calcDisplay.text.toString().contains('E')) {
+                calculateResult(firstValue, operation, resultValue)
+            } else {
+                calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
+            }
         }
         if (view != null) {
             when (view.id) {
@@ -133,7 +143,7 @@ class BasicCalculator : AppCompatActivity() {
 
         //jeśli reszta dzielenia wartości przez 1 wynosi 0.0 lub -0.0
         if (displayedValue.rem(1).equals(0.0) or displayedValue.rem(1).equals(-0.0)) {
-            calcDisplay.text = displayedValue.toInt().toString()
+            calcDisplay.text = displayedValue.toLong().toString()
         } else {
             calcDisplay.text = displayedValue.toString()
         }
@@ -141,7 +151,11 @@ class BasicCalculator : AppCompatActivity() {
 
     fun resultBtn(view: View) {
         if (!lastOperationPressed) {
-            calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
+            if (calcDisplay.text.toString().contains('E')) {
+                calculateResult(firstValue, operation, resultValue)
+            } else {
+                calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
+            }
             lastOperationPressed = true
         }
     }
