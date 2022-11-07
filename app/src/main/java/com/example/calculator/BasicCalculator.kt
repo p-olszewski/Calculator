@@ -58,7 +58,7 @@ class BasicCalculator : AppCompatActivity() {
     }
 
     /**
-     * Allow the user to enter number values
+     * Allow the user to enter number values.
      * Max number length is set to 10 characters (including a dot).
      * @param view
      */
@@ -82,7 +82,7 @@ class BasicCalculator : AppCompatActivity() {
 
     /**
      * Allow the user to select a mathematical operation.
-     * calculates the result dynamically with successive operations.
+     * Calculates the result dynamically with successive operations.
      * @param view
      */
     fun operationButtonHandler(view: View?) {
@@ -106,9 +106,9 @@ class BasicCalculator : AppCompatActivity() {
     }
 
     /**
-     * Dot button handler.
-     * Allows the user to add dot in expression.
+     * Dot button handler. Allows the user to add dot in expression.
      * Only 1 dot per expression.
+     * @param view
      */
     fun dotBtn(view: View) {
         if (!dotInValue) {
@@ -118,8 +118,8 @@ class BasicCalculator : AppCompatActivity() {
     }
 
     /**
-     * All Clear button handler.
-     * Allows the user to clear calculations.
+     * All Clear button handler. Allows the user to clear calculations.
+     * @param view
      */
     fun allClearBtn(view: View?) {
         Log.d(TAG, "Event handler call: ${calcDisplay.text}")
@@ -127,8 +127,8 @@ class BasicCalculator : AppCompatActivity() {
     }
 
     /**
-     * Backspace button handler.
-     * Allows the user to delete last character.
+     * Backspace button handler. Allows the user to delete last character.
+     * @param view
      */
     fun bkspBtn(view: View?) {
         Log.d(TAG, "Event handler call: ${calcDisplay.text}")
@@ -144,8 +144,7 @@ class BasicCalculator : AppCompatActivity() {
     }
 
     /**
-     * Helper function.
-     * Set essential settings to default.
+     * Helper function. Set essential settings to default.
      */
     private fun restoreDefaults() {
         calcDisplay.text = "0"
@@ -156,8 +155,8 @@ class BasicCalculator : AppCompatActivity() {
     }
 
     /**
-     * Change sign button handler.
-     * Allows the user to change the sign of a number to the opposite one.
+     * Change sign button handler. Allows the user to change the sign of a number to the opposite one.
+     * @param view
      */
     fun changeSignBtn(view: View?) {
         var displayedValue = calcDisplay.text.toString().toDouble()
@@ -167,8 +166,7 @@ class BasicCalculator : AppCompatActivity() {
     }
 
     /**
-     * Helper function.
-     * Format result on screen to scientific notation if needed.
+     * Helper function. Format result on screen to scientific notation if needed.
      * Remove last 2 characters if result ends with '.0'.
      */
     private fun formatResult() {
@@ -179,8 +177,8 @@ class BasicCalculator : AppCompatActivity() {
     }
 
     /**
-     * Result button handler.
-     * Allows the user to calculate result.
+     * Result button handler. Allows the user to calculate result.
+     * @param view
      */
     fun resultBtn(view: View) {
         if (!lastOperationPressed) {
