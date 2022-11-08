@@ -8,15 +8,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlin.math.abs
 
-public const val TAG = "BasicCalculator"
+const val TAG = "BasicCalculator"
 
 open class Calculator : AppCompatActivity() {
     lateinit var calcDisplay: TextView
     var firstValue: Double = 0.0
-    var operation: String = ""
-    var lastOperationPressed: Boolean = false
-    var dotInValue: Boolean = false
-    var resultValue: Double = 0.0
+    private var operation: String = ""
+    private var lastOperationPressed: Boolean = false
+    private var dotInValue: Boolean = false
+    private var resultValue: Double = 0.0
 
     /**
      * Calculates the result and round it to 5 decimal places.
@@ -25,7 +25,7 @@ open class Calculator : AppCompatActivity() {
      * @param operator
      * @param value2
      */
-    fun calculateResult(value1: Double, operator: String, value2: Double) {
+    private fun calculateResult(value1: Double, operator: String, value2: Double) {
         Log.d(TAG, "Result value before: $resultValue")
         when (operator) {
             "+" -> resultValue = value1 + value2
@@ -43,9 +43,38 @@ open class Calculator : AppCompatActivity() {
                 }
             }
         }
-        dotInValue = calcDisplay.text.toString().contains('.') // true or false
+        checkDot()
         formatResult()
         Log.d(TAG, "Result: $resultValue, $value1 $operator $value2, dotInValue: $dotInValue")
+    }
+
+    /**
+     * Helper function. Set essential settings to default.
+     */
+    private fun restoreDefaults() {
+        calcDisplay.text = "0"
+        firstValue = 0.0
+        resultValue = 0.0
+        operation = ""
+        dotInValue = false
+    }
+
+    /**
+     * Helper function. Checks if a dot is displayed on the screen
+     */
+    private fun checkDot() {
+        dotInValue = calcDisplay.text.toString().contains('.') // true or false
+    }
+
+    /**
+     * Helper function. Format result on screen to scientific notation if needed.
+     * Remove last 2 characters if result ends with '.0'.
+     */
+    private fun formatResult() {
+        calcDisplay.text = String.format("%g", resultValue).toDouble().toString()
+        if (calcDisplay.text.toString().takeLast(2) == ".0") {
+            calcDisplay.text = calcDisplay.text.toString().dropLast(2)
+        }
     }
 
     /**
@@ -68,7 +97,7 @@ open class Calculator : AppCompatActivity() {
             }
         }
         lastOperationPressed = false
-        dotInValue = calcDisplay.text.toString().contains('.') // true or false
+        checkDot()
         Log.d(
             TAG,
             "Digit: ${(view as Button).text}, String: ${calcDisplay.text}, lastOperationPressed: $lastOperationPressed, dotInValue: $dotInValue"
@@ -139,17 +168,6 @@ open class Calculator : AppCompatActivity() {
     }
 
     /**
-     * Helper function. Set essential settings to default.
-     */
-    private fun restoreDefaults() {
-        calcDisplay.text = "0"
-        firstValue = 0.0
-        resultValue = 0.0
-        operation = ""
-        dotInValue = false
-    }
-
-    /**
      * Change sign button handler. Allows the user to change the sign of a number to the opposite one.
      * @param view
      */
@@ -160,16 +178,6 @@ open class Calculator : AppCompatActivity() {
         formatResult()
     }
 
-    /**
-     * Helper function. Format result on screen to scientific notation if needed.
-     * Remove last 2 characters if result ends with '.0'.
-     */
-    private fun formatResult() {
-        calcDisplay.text = String.format("%g", resultValue).toDouble().toString()
-        if (calcDisplay.text.toString().takeLast(2) == ".0") {
-            calcDisplay.text = calcDisplay.text.toString().dropLast(2)
-        }
-    }
 
     /**
      * Result button handler. Allows the user to calculate result.
