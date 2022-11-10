@@ -15,6 +15,5 @@ class BasicCalculator : Calculator() {
         firstValue = calcDisplay.text.toString().toDouble()
         Log.d(TAG, "First call: ${calcDisplay.text}")
     }
-
 }
 

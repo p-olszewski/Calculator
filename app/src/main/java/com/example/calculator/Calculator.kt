@@ -1,5 +1,7 @@
 package com.example.calculator
 
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -17,6 +19,26 @@ open class Calculator : AppCompatActivity() {
     private var lastOperationPressed: Boolean = false
     private var dotInValue: Boolean = false
     private var resultValue: Double = 0.0
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("screenValue_key", calcDisplay.text.toString())
+        outState.putString("operation_key", operation)
+        outState.putBoolean("lastOperationPressed_key", lastOperationPressed)
+        outState.putBoolean("dotInValue_key", dotInValue)
+        outState.putDouble("firstValue_key", firstValue)
+        outState.putDouble("resultValue_key", resultValue)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        calcDisplay.text = savedInstanceState.getString("screenValue_key")
+        operation = savedInstanceState.getString("operation_key").toString()
+        lastOperationPressed = savedInstanceState.getBoolean("lastOperationPressed_key")
+        dotInValue = savedInstanceState.getBoolean("dotInValue_key")
+        firstValue = savedInstanceState.getDouble("firstValue_key")
+        resultValue = savedInstanceState.getDouble("resultValue_key")
+        super.onRestoreInstanceState(savedInstanceState)
+    }
 
     /**
      * Calculates the result and round it to 5 decimal places.
