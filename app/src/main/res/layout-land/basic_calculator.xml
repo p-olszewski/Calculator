@@ -21,7 +21,7 @@
         android:paddingEnd="75dp"
         android:singleLine="true"
         android:textAlignment="textEnd"
-        android:textSize="48sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout_4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
     <LinearLayout
         android:id="@+id/linearLayout_4"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="@color/black"
         android:orientation="horizontal"
         android:weightSum="4"
@@ -50,7 +50,7 @@
             android:onClick="allClearBtn"
             android:text="@string/button_ac"
             android:textColor="@android:color/holo_orange_dark"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 
@@ -63,7 +63,7 @@
             android:onClick="bkspBtn"
             android:text="@string/button_bksp"
             android:textColor="@android:color/holo_orange_dark"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 
@@ -74,10 +74,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="changeSignBtn"
-            android:paddingTop="2dp"
             android:text="@string/button_change_sign"
             android:textColor="@android:color/holo_orange_dark"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 
@@ -90,7 +89,7 @@
             android:onClick="operationButtonHandler"
             android:text="@string/button_divide"
             android:textColor="@android:color/holo_orange_dark"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
@@ -98,7 +97,7 @@
     <LinearLayout
         android:id="@+id/linearLayout_3"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="@color/black"
         android:orientation="horizontal"
         android:weightSum="4"
@@ -115,7 +114,7 @@
             android:onClick="numericButtonHandler"
             android:text="@string/button_7"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 
@@ -128,7 +127,7 @@
             android:onClick="numericButtonHandler"
             android:text="@string/button_8"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 
@@ -141,7 +140,7 @@
             android:onClick="numericButtonHandler"
             android:text="@string/button_9"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 
@@ -154,7 +153,7 @@
             android:onClick="operationButtonHandler"
             android:text="@string/button_subtract"
             android:textColor="@android:color/holo_orange_dark"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:cornerRadius="10dp"
             tools:ignore="UsingOnClickInXml" />
@@ -163,7 +162,7 @@
     <LinearLayout
         android:id="@+id/linearLayout_1"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="@color/black"
         android:orientation="horizontal"
         android:weightSum="4"
@@ -180,7 +179,7 @@
             android:onClick="numericButtonHandler"
             android:text="@string/button_1"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:cornerRadius="10dp"
             tools:ignore="UsingOnClickInXml" />
@@ -194,7 +193,7 @@
             android:onClick="numericButtonHandler"
             android:text="@string/button_2"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:cornerRadius="10dp"
             tools:ignore="UsingOnClickInXml" />
@@ -208,7 +207,7 @@
             android:onClick="numericButtonHandler"
             android:text="@string/button_3"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:cornerRadius="10dp"
             tools:ignore="UsingOnClickInXml" />
@@ -222,7 +221,7 @@
             android:onClick="operationButtonHandler"
             android:text="@string/button_multiply"
             android:textColor="@android:color/holo_orange_dark"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
@@ -230,7 +229,7 @@
     <LinearLayout
         android:id="@+id/LinearLayout_2"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="@color/black"
         android:orientation="horizontal"
         android:weightSum="4"
@@ -247,7 +246,7 @@
             android:onClick="numericButtonHandler"
             android:text="@string/button_4"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 
@@ -260,7 +259,7 @@
             android:onClick="numericButtonHandler"
             android:text="@string/button_5"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 
@@ -273,7 +272,7 @@
             android:onClick="numericButtonHandler"
             android:text="@string/button_6"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 
@@ -286,7 +285,7 @@
             android:onClick="operationButtonHandler"
             android:text="@string/button_add"
             android:textColor="@android:color/holo_orange_dark"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 
@@ -295,7 +294,7 @@
     <LinearLayout
         android:id="@+id/linearLayout_0"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="@color/black"
         android:orientation="horizontal"
         android:weightSum="4"
@@ -312,7 +311,7 @@
             android:onClick="numericButtonHandler"
             android:text="@string/button_0"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="DuplicateSpeakableTextCheck,UsingOnClickInXml" />
 
@@ -325,7 +324,7 @@
             android:onClick="dotBtn"
             android:text="@string/button_dot"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 
@@ -339,7 +338,7 @@
             android:onClick="resultBtn"
             android:text="@string/button_result"
             android:textColor="@color/white"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml,TextContrastCheck" />
     </LinearLayout>
