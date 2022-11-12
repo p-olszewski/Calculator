@@ -1,7 +1,6 @@
 package com.example.calculator
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -194,9 +193,11 @@ open class Calculator : AppCompatActivity() {
      * @param view
      */
     fun changeSignBtn(view: View?) {
-        var displayedValue = calcDisplay.text.toString().toDouble()
-        displayedValue = if (displayedValue > 0) -displayedValue else abs(displayedValue)
-        calcDisplay.text = displayedValue.toString()
+        resultValue = calcDisplay.text.toString().toDouble()
+        Log.d(TAG, "Displayed value before: $resultValue")
+        resultValue = if (resultValue > 0) -resultValue else abs(resultValue)
+        Log.d(TAG, "Displayed value after: $resultValue")
+        calcDisplay.text = resultValue.toString()
         formatResult()
     }
 
