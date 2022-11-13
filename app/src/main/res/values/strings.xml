@@ -20,11 +20,19 @@
     <string name="button_2">2</string>
     <string name="button_3">3</string>
     <string name="button_subtract">-</string>
-    <string name="nowy_string">nowy string</string>
     <string name="basic_calculator">Basic calculator</string>
     <string name="advanced_calculator">Advanced calculator</string>
     <string name="about_me">About me</string>
     <string name="exit">Exit</string>
     <string name="welcome_text">Welcome to my Calculator App!</string>
     <string name="copyright">Copyright © 229299</string>
+    <string name="about_me_text">Calculator App ® \nPrzemysław Olszewski \n\n\nThe application provides calculator functionality that, depending on the choice of the user will allow to perform basic or advanced calculations.</string>
+    <string name="sqrt">√</string>
+    <string name="x_2">x<sup>2</sup></string>
+    <string name="x_y">x<sup>y</sup></string>
+    <string name="log">log</string>
+    <string name="ln">ln</string>
+    <string name="tan">tan</string>
+    <string name="cos">cos</string>
+    <string name="sin">sin</string>
 </resources>

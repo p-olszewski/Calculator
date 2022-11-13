@@ -2,12 +2,12 @@ package com.example.calculator
 
 import android.os.Bundle
 
-class BasicCalculator : Calculator() {
+class AdvancedCalculator : Calculator() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.basic_calculator)
-        supportActionBar?.title = "Basic Calculator"
+        setContentView(R.layout.advanced_calculator)
+        supportActionBar?.title = "Advanced Calculator"
         supportActionBar?.setDisplayHomeAsUpEnabled(true) //back arrow
         displayPrepare()
     }

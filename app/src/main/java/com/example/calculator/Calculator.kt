@@ -7,9 +7,9 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.math.abs
+import kotlin.math.*
 
-const val TAG = "BasicCalculator"
+const val TAG = "Calculator"
 
 open class Calculator : AppCompatActivity() {
     lateinit var calcDisplay: TextView
@@ -18,6 +18,11 @@ open class Calculator : AppCompatActivity() {
     private var lastOperationPressed: Boolean = false
     private var dotInValue: Boolean = false
     private var resultValue: Double = 0.0
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putString("screenValue_key", calcDisplay.text.toString())
@@ -37,6 +42,16 @@ open class Calculator : AppCompatActivity() {
         firstValue = savedInstanceState.getDouble("firstValue_key")
         resultValue = savedInstanceState.getDouble("resultValue_key")
         super.onRestoreInstanceState(savedInstanceState)
+    }
+
+    /**
+     * Prepare display TextView and initialize firstValue variable
+     */
+    fun displayPrepare() {
+        calcDisplay = findViewById<TextView>(R.id.tvResult)
+        calcDisplay.text = "0"
+        firstValue = calcDisplay.text.toString().toDouble()
+        Log.d(TAG, "First call: ${calcDisplay.text}")
     }
 
     /**
@@ -130,7 +145,7 @@ open class Calculator : AppCompatActivity() {
      * Calculates the result dynamically with successive operations.
      * @param view
      */
-    fun operationButtonHandler(view: View?) {
+    fun basicOperationButtonHandler(view: View?) {
         if (!lastOperationPressed and operation.isNotEmpty()) {
             calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
         }
@@ -211,5 +226,33 @@ open class Calculator : AppCompatActivity() {
             calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
             lastOperationPressed = true
         }
+    }
+
+    fun advancedOperationButtonHandler(view: View?) {
+//        if (!lastOperationPressed and operation.isNotEmpty()) {
+//            calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
+//        }
+
+
+        if (view != null) {
+            resultValue = calcDisplay.text.toString().toDouble()
+            when (view.id) {
+                R.id.button_sin -> resultValue = sin(resultValue)
+                R.id.button_cos -> resultValue = cos(resultValue)
+                R.id.button_tan -> resultValue = tan(resultValue)
+                R.id.button_sqrt -> resultValue = sqrt(resultValue)
+                R.id.button_x_2 -> resultValue = resultValue.pow (2)
+                R.id.button_log -> resultValue = log10(resultValue)
+                R.id.button_ln -> resultValue = ln(resultValue)
+            }
+        }
+        calcDisplay.text = resultValue.toString()
+        formatResult()
+//        lastOperationPressed = true;
+//        firstValue = calcDisplay.text.toString().toDouble()
+//        Log.d(
+//            TAG,
+//            "Operation: $operation, lastOperationPressed: $lastOperationPressed, firstValue: $firstValue, dotInValue: $dotInValue"
+//        )
     }
 }

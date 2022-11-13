@@ -15,5 +15,22 @@ class MainMenu : AppCompatActivity() {
             val intent = Intent(this, BasicCalculator::class.java)
             startActivity(intent)
         }
+
+        val calcBtnAdvancedCalc = findViewById<Button>(R.id.menu_btn_advanced_calc)
+        calcBtnAdvancedCalc.setOnClickListener {
+            val intent = Intent(this, AdvancedCalculator::class.java)
+            startActivity(intent)
+        }
+
+        val menuBtnAbout = findViewById<Button>(R.id.menu_btn_about)
+        menuBtnAbout.setOnClickListener {
+            val intent = Intent(this, AboutMe::class.java)
+            startActivity(intent)
+        }
+
+        val menuBtnExit = findViewById<Button>(R.id.menu_btn_exit)
+        menuBtnExit.setOnClickListener {
+            finish()
+        }
     }
 }
