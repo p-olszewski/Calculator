@@ -89,7 +89,7 @@
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:onClick="basicOperationButtonHandler"
+            android:onClick="delayedOperationButtonHandler"
             tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
 
@@ -149,7 +149,7 @@
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:onClick="basicOperationButtonHandler"
+            android:onClick="delayedOperationButtonHandler"
             app:cornerRadius="10dp"
             tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
@@ -212,7 +212,7 @@
             android:text="@string/button_multiply"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
-            android:onClick="basicOperationButtonHandler"
+            android:onClick="delayedOperationButtonHandler"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
@@ -272,7 +272,7 @@
             android:text="@string/button_add"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="30sp"
-            android:onClick="basicOperationButtonHandler"
+            android:onClick="delayedOperationButtonHandler"
             android:textStyle="bold"
             tools:ignore="UsingOnClickInXml" />
 

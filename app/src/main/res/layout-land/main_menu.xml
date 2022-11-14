@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainMenu">
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="30dp"
+        android:gravity="top"
+        android:text="@string/welcome_text"
+        android:textColor="@color/orange_500"
+        android:textSize="36sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/menu_btn_basic_calc"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="90dp"
+        android:text="@string/basic_calculator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/welcome"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/menu_btn_advanced_calc"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/advanced_calculator"
+        app:layout_constraintStart_toStartOf="@+id/menu_btn_basic_calc"
+        app:layout_constraintTop_toBottomOf="@+id/menu_btn_basic_calc"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/menu_btn_about"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/about_me"
+        android:textColor="@color/orange_500"
+        app:layout_constraintStart_toStartOf="@+id/menu_btn_advanced_calc"
+        app:layout_constraintTop_toBottomOf="@+id/menu_btn_advanced_calc"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/menu_btn_exit"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/exit"
+        android:textColor="@color/orange_500"
+        app:layout_constraintStart_toStartOf="@+id/menu_btn_about"
+        app:layout_constraintTop_toBottomOf="@+id/menu_btn_about"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/index"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/copyright"
+        android:textColor="@color/orange_500"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_btn_exit"
+        app:layout_constraintEnd_toEndOf="@+id/welcome"
+        app:layout_constraintStart_toStartOf="@+id/welcome"
+        tools:ignore="TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

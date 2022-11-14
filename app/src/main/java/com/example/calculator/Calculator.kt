@@ -78,6 +78,7 @@ open class Calculator : AppCompatActivity() {
                     ).show()
                 }
             }
+            "^" -> resultValue = value1.pow(value2)
         }
         checkDot()
         formatResult()
@@ -142,10 +143,11 @@ open class Calculator : AppCompatActivity() {
 
     /**
      * Allow the user to select a mathematical operation.
+     * Waiting for second argument to calculate.
      * Calculates the result dynamically with successive operations.
      * @param view
      */
-    fun basicOperationButtonHandler(view: View?) {
+    fun delayedOperationButtonHandler(view: View?) {
         if (!lastOperationPressed and operation.isNotEmpty()) {
             calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
         }
@@ -155,6 +157,7 @@ open class Calculator : AppCompatActivity() {
                 R.id.button_subtract -> operation = "-"
                 R.id.button_multiply -> operation = "*"
                 R.id.button_divide -> operation = "/"
+                R.id.button_x_y -> operation = "^"
             }
         }
         lastOperationPressed = true;
@@ -163,6 +166,29 @@ open class Calculator : AppCompatActivity() {
             TAG,
             "Operation: $operation, lastOperationPressed: $lastOperationPressed, firstValue: $firstValue, dotInValue: $dotInValue"
         )
+    }
+
+    /**
+     * Allow the user to select a mathematical operation.
+     * Calculates the result instantly after operation button pressed.
+     * @param view
+     */
+    fun instantOperationButtonHandler(view: View?) {
+        if (view != null) {
+            resultValue = calcDisplay.text.toString().toDouble()
+            when (view.id) {
+                R.id.button_sin -> resultValue = sin(resultValue)
+                R.id.button_cos -> resultValue = cos(resultValue)
+                R.id.button_tan -> resultValue = tan(resultValue)
+                R.id.button_sqrt -> resultValue = sqrt(resultValue)
+                R.id.button_x_2 -> resultValue = resultValue.pow (2)
+                R.id.button_log -> resultValue = log10(resultValue)
+                R.id.button_ln -> resultValue = ln(resultValue)
+            }
+        }
+        calcDisplay.text = resultValue.toString()
+        checkDot()
+        formatResult()
     }
 
     /**
@@ -226,33 +252,5 @@ open class Calculator : AppCompatActivity() {
             calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
             lastOperationPressed = true
         }
-    }
-
-    fun advancedOperationButtonHandler(view: View?) {
-//        if (!lastOperationPressed and operation.isNotEmpty()) {
-//            calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
-//        }
-
-
-        if (view != null) {
-            resultValue = calcDisplay.text.toString().toDouble()
-            when (view.id) {
-                R.id.button_sin -> resultValue = sin(resultValue)
-                R.id.button_cos -> resultValue = cos(resultValue)
-                R.id.button_tan -> resultValue = tan(resultValue)
-                R.id.button_sqrt -> resultValue = sqrt(resultValue)
-                R.id.button_x_2 -> resultValue = resultValue.pow (2)
-                R.id.button_log -> resultValue = log10(resultValue)
-                R.id.button_ln -> resultValue = ln(resultValue)
-            }
-        }
-        calcDisplay.text = resultValue.toString()
-        formatResult()
-//        lastOperationPressed = true;
-//        firstValue = calcDisplay.text.toString().toDouble()
-//        Log.d(
-//            TAG,
-//            "Operation: $operation, lastOperationPressed: $lastOperationPressed, firstValue: $firstValue, dotInValue: $dotInValue"
-//        )
     }
 }
