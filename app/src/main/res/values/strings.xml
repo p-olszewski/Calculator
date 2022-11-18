@@ -35,4 +35,5 @@
     <string name="tan">tan</string>
     <string name="cos">cos</string>
     <string name="sin">sin</string>
+    <string name="button_percent">%</string>
 </resources>

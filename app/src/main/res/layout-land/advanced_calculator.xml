@@ -421,11 +421,24 @@
             tools:ignore="UsingOnClickInXml" />
 
         <Button
+            android:id="@+id/button_percent"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="percentBtn"
+            android:text="@string/button_percent"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="UsingOnClickInXml" />
+
+        <Button
             android:id="@+id/button_result"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:onClick="resultBtn"
             android:text="@string/button_result"
             android:textColor="@color/white"

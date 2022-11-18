@@ -10,6 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlin.math.*
 
 const val TAG = "Calculator"
+private const val SCREENVALUE_KEY = "screenValue_key"
+private const val OPERATION_KEY = "operation_key"
+private const val LASTOPERATIONPRESSED_KEY = "lastOperationPressed_key"
+private const val DOTINVALUE_KEY = "dotInValue_key"
+private const val FIRSTVALUE_KEY = "firstValue_key"
+private const val RESULTVALUE_KEY = "resultValue_key"
 
 open class Calculator : AppCompatActivity() {
     lateinit var calcDisplay: TextView
@@ -25,22 +31,22 @@ open class Calculator : AppCompatActivity() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putString("screenValue_key", calcDisplay.text.toString())
-        outState.putString("operation_key", operation)
-        outState.putBoolean("lastOperationPressed_key", lastOperationPressed)
-        outState.putBoolean("dotInValue_key", dotInValue)
-        outState.putDouble("firstValue_key", firstValue)
-        outState.putDouble("resultValue_key", resultValue)
+        outState.putString(SCREENVALUE_KEY, calcDisplay.text.toString())
+        outState.putString(OPERATION_KEY, operation)
+        outState.putBoolean(LASTOPERATIONPRESSED_KEY, lastOperationPressed)
+        outState.putBoolean(DOTINVALUE_KEY, dotInValue)
+        outState.putDouble(FIRSTVALUE_KEY, firstValue)
+        outState.putDouble(RESULTVALUE_KEY, resultValue)
         super.onSaveInstanceState(outState)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        calcDisplay.text = savedInstanceState.getString("screenValue_key")
-        operation = savedInstanceState.getString("operation_key").toString()
-        lastOperationPressed = savedInstanceState.getBoolean("lastOperationPressed_key")
-        dotInValue = savedInstanceState.getBoolean("dotInValue_key")
-        firstValue = savedInstanceState.getDouble("firstValue_key")
-        resultValue = savedInstanceState.getDouble("resultValue_key")
+        calcDisplay.text = savedInstanceState.getString(SCREENVALUE_KEY)
+        operation = savedInstanceState.getString(OPERATION_KEY).toString()
+        lastOperationPressed = savedInstanceState.getBoolean(LASTOPERATIONPRESSED_KEY)
+        dotInValue = savedInstanceState.getBoolean(DOTINVALUE_KEY)
+        firstValue = savedInstanceState.getDouble(FIRSTVALUE_KEY)
+        resultValue = savedInstanceState.getDouble(RESULTVALUE_KEY)
         super.onRestoreInstanceState(savedInstanceState)
     }
 
@@ -80,8 +86,8 @@ open class Calculator : AppCompatActivity() {
             }
             "^" -> resultValue = value1.pow(value2)
         }
-        checkDot()
         formatResult()
+        checkDot()
         Log.d(TAG, "Result: $resultValue, $value1 $operator $value2, dotInValue: $dotInValue")
     }
 
@@ -120,7 +126,7 @@ open class Calculator : AppCompatActivity() {
      * @param view
      */
     fun numericButtonHandler(view: View?) {
-        if (lastOperationPressed or (calcDisplay.text.toString() == "0")) {
+        if ((lastOperationPressed or (calcDisplay.text.toString() == "0")) and (calcDisplay.text.last() != '.')) {
             calcDisplay.text = (view as Button).text
         } else {
             if (calcDisplay.text.length >= 10) {
@@ -248,9 +254,21 @@ open class Calculator : AppCompatActivity() {
      * @param view
      */
     fun resultBtn(view: View) {
+        Log.d(TAG, "lastOperationPressed: $lastOperationPressed")
         if (!lastOperationPressed) {
             calculateResult(firstValue, operation, calcDisplay.text.toString().toDouble())
             lastOperationPressed = true
         }
+    }
+
+    /**
+     * Percent button handler. Allows the user to calculate percent value.
+     * @param view
+     */
+    fun percentBtn(view: View) {
+        resultValue = calcDisplay.text.toString().toDouble()
+        resultValue /= 100
+        calcDisplay.text = resultValue.toString()
+        formatResult()
     }
 }
